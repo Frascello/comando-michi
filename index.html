@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COMANDO MICHI</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐱</text></svg>" />
+    <style>
+      :root { color-scheme: dark; }
+      html, body { margin: 0; height: 100%; background: #05070d; overflow: hidden; }
+      #game-container { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
+      /* El canvas ocupa la ventana manteniendo 16:9, sin bordes ni marcos */
+      #game-container canvas {
+        width: min(100vw, calc(100vh * 16 / 9)) !important;
+        height: auto !important;
+        display: block; border: 0; outline: none; image-rendering: pixelated;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="game-container"></div>
+    <script>
+      // Audio on/off (tecla M o la opción AUDIO del menú, todo dentro del juego)
+      let soundMuted = false;
+      function toggleAudio() {
+        soundMuted = !soundMuted;
+        if (typeof masterVolume === "function") masterVolume(soundMuted ? 0 : 1, 0.05);
+      }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js"></script>
+    <script src="assets.js"></script>
+    <script src="sprites.js"></script>
+    <script src="game.js"></script>
+  </body>
+</html>
